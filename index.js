@@ -21,24 +21,24 @@ const refs = {
 refs.btnStart.addEventListener('click', start);
 refs.btnStop.addEventListener('click', stop);
 
-function render(itemColor){
+function render(itemColor) {
   document.body.style.backgroundColor = colors[itemColor];
 }
 
-function start(){
-  if(timerId){
+function start() {
+  if (timerId) {
     clearTimeout(timerId);
     return;
   }
 
-  timerId = setInterval(function() {
-  let firstColor = 0;
-  let lastColor = colors.length - 1;
-  let randomColor = randomIntegerFromInterval(firstColor, lastColor)
-  render(randomColor)
+  timerId = setInterval(function () {
+    let firstColor = 0;
+    let lastColor = colors.length - 1;
+    let randomColor = randomIntegerFromInterval(firstColor, lastColor);
+    render(randomColor);
   }, 500);
 }
 
-function stop(){
+function stop() {
   clearInterval(timerId);
 }
