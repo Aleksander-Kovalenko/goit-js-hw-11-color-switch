@@ -7,8 +7,6 @@ const colors = [
   '#795548',
 ];
 
-let timerId = null;
-
 const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
@@ -26,6 +24,7 @@ function render(itemColor) {
 }
 
 function start() {
+  onHandleBtn(true, false);
   timerId = setInterval(function () {
     let firstColor = 0;
     let lastColor = colors.length - 1;
@@ -35,5 +34,11 @@ function start() {
 }
 
 function stop() {
+  onHandleBtn(false, true);
   clearInterval(timerId);
+}
+
+function onHandleBtn(btnStart = false, btnStop = true) {
+  refs.btnStart.disabled = btnStart;
+  refs.btnStop.disabled = btnStop;
 }
