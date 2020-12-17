@@ -26,11 +26,6 @@ function render(itemColor) {
 }
 
 function start() {
-  if (timerId) {
-    clearTimeout(timerId);
-    return;
-  }
-
   timerId = setInterval(function () {
     let firstColor = 0;
     let lastColor = colors.length - 1;
