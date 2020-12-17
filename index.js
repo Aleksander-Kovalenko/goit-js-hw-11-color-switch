@@ -31,7 +31,7 @@ function start() {
     let lastColor = colors.length - 1;
     let randomColor = randomIntegerFromInterval(firstColor, lastColor);
     render(randomColor);
-  }, 500);
+  }, 1000);
 }
 
 function stop() {
