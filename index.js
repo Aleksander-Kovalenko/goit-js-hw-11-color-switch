@@ -6,39 +6,42 @@ const colors = [
   '#009688',
   '#795548',
 ];
-
+const DELAY_SETINTERVAL = 1000;
+let intervalId = null;
 const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
 const refs = {
-  btnStart: document.querySelector('button[data-action="start"]'),
-  btnStop: document.querySelector('button[data-action="stop"]'),
-};
-
-refs.btnStart.addEventListener('click', start);
-refs.btnStop.addEventListener('click', stop);
-
-function render(itemColor) {
-  document.body.style.backgroundColor = colors[itemColor];
+  start: document.querySelector('button[data-action="start"]'),
+  stop: document.querySelector('button[data-action="stop"]'),
 }
 
-function start() {
-  onHandleBtn(true, false);
-  timerId = setInterval(function () {
-    let firstColor = 0;
-    let lastColor = colors.length - 1;
-    let randomColor = randomIntegerFromInterval(firstColor, lastColor);
+choiceActive()
+
+refs.start.addEventListener('click', onHandleBtnStart);
+refs.stop.addEventListener('click', onHandleBtnStop);
+
+function render(color) {
+  document.body.style.backgroundColor = colors[color];
+}
+
+function onHandleBtnStart() {
+  intervalId = setInterval(() => {
+    const firstColor = 0;
+    const lastColor = colors.length - 1;
+    const randomColor = randomIntegerFromInterval(firstColor, lastColor);
     render(randomColor);
-  }, 1000);
+    choiceActive(true, false);
+  }, DELAY_SETINTERVAL)
 }
 
-function stop() {
-  onHandleBtn(false, true);
-  clearInterval(timerId);
+function onHandleBtnStop() {
+  clearInterval(intervalId);
+  choiceActive(false, true);
 }
 
-function onHandleBtn(btnStart = false, btnStop = true) {
-  refs.btnStart.disabled = btnStart;
-  refs.btnStop.disabled = btnStop;
+function choiceActive(start = false, stop = true) {
+  refs.start.disabled = start;
+  refs.stop.disabled = stop;
 }
