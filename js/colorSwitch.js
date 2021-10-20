@@ -7,7 +7,7 @@ const colors = [
   "#795548",
 ];
 
-class colorSwitch {
+export default class colorSwitch {
   constructor({ start, stop }) {
     this.refs = {
       start: document.querySelector(start),
@@ -48,8 +48,3 @@ class colorSwitch {
     return colors[Math.floor(Math.random() * colors.length)];
   }
 }
-
-const randomColor = new colorSwitch({
-  start: 'button[data-action="start"]',
-  stop: 'button[data-action="stop"]',
-});
