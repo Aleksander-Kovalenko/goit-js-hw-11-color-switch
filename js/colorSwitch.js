@@ -1,4 +1,11 @@
-const colors = ['#FFFFFF', '#2196F3', '#4CAF50', '#FF9800', '#009688', '#795548'];
+const colors = [
+  "#FFFFFF",
+  "#2196F3",
+  "#4CAF50",
+  "#FF9800",
+  "#009688",
+  "#795548",
+];
 
 class colorSwitch {
   constructor({ start, stop }) {
@@ -9,13 +16,15 @@ class colorSwitch {
       stop: document.querySelector(stop),
     };
 
-    refs.start.addEventListener('click', onButtonEvent);
-    refs.stop.addEventListener('click', onButtonEvent);
+    refs.start.addEventListener("click", onButtonEvent);
+    refs.stop.addEventListener("click", onButtonEvent);
 
     function onButtonEvent(e) {
+      document.querySelector(".mentor").style.display = "block";
       e.preventDefault();
       if (isActive) {
         onClearTimer();
+        document.querySelector(".mentor").style.display = "none";
         return;
       }
 
