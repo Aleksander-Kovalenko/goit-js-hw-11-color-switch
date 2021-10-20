@@ -9,43 +9,43 @@ const colors = [
 
 class colorSwitch {
   constructor({ start, stop }) {
-    let isActive = null;
-    let timerId = null;
-    const refs = {
+    this.refs = {
       start: document.querySelector(start),
       stop: document.querySelector(stop),
     };
 
-    refs.start.addEventListener("click", onButtonEvent);
-    refs.stop.addEventListener("click", onButtonEvent);
+    this.isActive = null;
+    this.timerId = null;
 
-    function onButtonEvent(e) {
-      document.querySelector(".mentor").style.display = "block";
-      e.preventDefault();
-      if (isActive) {
-        onClearTimer();
-        document.querySelector(".mentor").style.display = "none";
-        return;
-      }
-
-      isActive = true;
-      refs.start.disabled = true;
-
-      timerId = setInterval(() => {
-        let randomColorsOnBody = switchColor();
-        document.body.style.background = randomColorsOnBody;
-      }, 1000);
+    this.refs.start.addEventListener("click", this.onButtonEvent.bind(this));
+    this.refs.stop.addEventListener("click", this.onButtonEvent.bind(this));
+  }
+  onButtonEvent(e) {
+    document.querySelector(".mentor").style.display = "block";
+    e.preventDefault();
+    if (this.isActive) {
+      this.onClearTimer();
+      document.querySelector(".mentor").style.display = "none";
+      return;
     }
 
-    function onClearTimer() {
-      isActive = false;
-      refs.start.disabled = false;
-      clearInterval(timerId);
-    }
+    this.isActive = true;
+    this.refs.start.disabled = true;
 
-    function switchColor() {
-      return colors[Math.floor(Math.random() * colors.length)];
-    }
+    this.timerId = setInterval(() => {
+      let randomColorsOnBody = this.switchColor();
+      document.body.style.background = randomColorsOnBody;
+    }, 1000);
+  }
+
+  onClearTimer() {
+    this.isActive = false;
+    this.refs.start.disabled = false;
+    clearInterval(this.timerId);
+  }
+
+  switchColor() {
+    return colors[Math.floor(Math.random() * colors.length)];
   }
 }
 
